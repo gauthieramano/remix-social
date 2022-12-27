@@ -1,14 +1,10 @@
-import { useLoaderData } from "@remix-run/react";
+import { typedjson, useTypedLoaderData } from "remix-typedjson";
+import { getPosts } from "~/services/posts.server";
 
-export const loader = () => [
-  {
-    title: "first",
-    body: "my first post",
-  },
-];
+export const loader = async () => typedjson({ posts: await getPosts() });
 
 export default function Index() {
-  const posts = useLoaderData<typeof loader>();
+  const { posts } = useTypedLoaderData<typeof loader>();
 
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
