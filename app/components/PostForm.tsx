@@ -1,6 +1,9 @@
-function PostForm(props: React.ComponentPropsWithoutRef<"form">) {
+function PostForm({
+  method = "post",
+  ...props
+}: React.ComponentPropsWithoutRef<"form">) {
   return (
-    <form method="post" className="flex flex-col gap-4">
+    <form className="flex flex-col gap-4" method={method} {...props}>
       <div className="flex flex-col">
         <label htmlFor="body" className="mb-2 text-gray-600">
           Title
